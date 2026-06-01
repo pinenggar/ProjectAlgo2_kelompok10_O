@@ -127,6 +127,8 @@ void tampilkanBuku() {
              << (daftarBuku[i].tersedia ? "Tersedia" : "Dipinjam")
              << endl;
     }
+    system("pause");
+    system("cls");
 }
 
 // ================= SEARCHING =================
@@ -182,6 +184,8 @@ void cariBuku() {
 
         cout << "Buku tidak ditemukan.\n";
     }
+    system("pause");
+    system("cls");
 }
 
 // ================= PINJAM BUKU =================
@@ -224,6 +228,8 @@ void pinjamBuku() {
     }
 
     cout << "Kode buku tidak ditemukan.\n";
+    system("pause");
+    system("cls");
 }
 
 // ================= SORTING JUDUL =================
@@ -249,6 +255,8 @@ void sortJudul() {
     }
 
     cout << "Data berhasil diurutkan berdasarkan judul.\n";
+    system("pause");
+    system("cls");
 }
 
 // ================= SORTING TAHUN =================
@@ -274,6 +282,8 @@ void sortTahun() {
     }
 
     cout << "Data berhasil diurutkan berdasarkan tahun.\n";
+    system("pause");
+    system("cls");
 }
 
 // ================= HAPUS BUKU =================
@@ -322,6 +332,8 @@ void hapusBuku() {
 
         cout << "Buku tidak ditemukan.\n";
     }
+    system("pause");
+    system("cls");
 }
 
 // ================= FILE =================
@@ -347,6 +359,8 @@ void simpanFile() {
     file.close();
 
     cout << "Data berhasil disimpan ke file.\n";
+    system("pause");
+    system("cls");
 }
 
 // ================= LOAD FILE =================
@@ -396,6 +410,53 @@ void loadFile() {
     file.close();
 }
 
+// ================= KEMBALIKAN BUKU =================
+void kembalikanBuku() {
+
+    if (jumlahBuku == 0) {
+
+        cout << "\nBelum ada buku.\n";
+        return;
+    }
+
+    string kode;
+
+    cout << "\nMasukkan kode buku yang ingin dikembalikan: ";
+    getline(cin, kode);
+
+    if (kode.empty()) {
+
+        cout << "Kode tidak boleh kosong!\n";
+        return;
+    }
+
+    for (int i = 0; i < jumlahBuku; i++) {
+
+        if (daftarBuku[i].kode == kode) {
+
+            if (!daftarBuku[i].tersedia) {
+
+                daftarBuku[i].tersedia = true;
+
+                cout << "Buku berhasil dikembalikan.\n";
+
+            } else {
+
+                cout << "Buku sudah berstatus tersedia.\n";
+            }
+
+            system("pause");
+            system("cls");
+            return;
+        }
+    }
+
+    cout << "Kode buku tidak ditemukan.\n";
+
+    system("pause");
+    system("cls");
+}
+
 // ================= RECURSION =================
 void menuRecursive() {
 
@@ -406,11 +467,11 @@ void menuRecursive() {
     cout << "2. Tampilkan Buku\n";
     cout << "3. Cari Buku\n";
     cout << "4. Pinjam Buku\n";
-    cout << "5. Sorting Judul\n";
-    cout << "6. Sorting Tahun\n";
-    cout << "7. Simpan ke File\n";
+    cout << "5. Kembalikan Buku\n";
+    cout << "6. Sorting Judul\n";
+    cout << "7. Sorting Tahun\n";
     cout << "8. Hapus Buku\n";
-    cout << "9. Keluar\n";
+    cout << "9. Keluar Dan Simpan\n";
     cout << "Pilih menu: ";
 
     pilihan = inputAngka();
@@ -419,6 +480,8 @@ void menuRecursive() {
     if (pilihan < 1 || pilihan > 9) {
 
         cout << "Menu hanya tersedia dari 1 - 9!\n";
+        system("pause");
+        system("cls");
 
         menuRecursive();
         return;
@@ -445,15 +508,15 @@ void menuRecursive() {
             break;
 
         case 5:
-            sortJudul();
+            kembalikanBuku();
             break;
 
         case 6:
-            sortTahun();
+            sortJudul();
             break;
 
         case 7:
-            simpanFile();
+            sortTahun();
             break;
 
         case 8:
@@ -463,6 +526,8 @@ void menuRecursive() {
         case 9:
             simpanFile();
             cout << "Program selesai.\n";
+            cout << " :)\n ";
+            cout << "\t\n";
             return;
     }
 
